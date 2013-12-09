@@ -1,0 +1,54 @@
+.cf:before,
+.cf:after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+
+.cf:after {
+  clear: both;
+}
+
+/**
+ *  * For IE 6/7 only
+ *   * Include this rule to trigger hasLayout and contain floats.
+ *    */
+.cf {
+  *zoom: 1;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  height: auto !important;
+  position: relative;
+  margin: 0 auto;
+  background: #f0f0f0;
+  height: 100%;
+  min-height: 100%;
+}
+
+header, footer {
+  background: #ccc;
+}
+
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.nav-links {
+  list-style: none;
+}
+
+.nav-li {
+  float: left;
+  display: inline-block;
+  margin-left: 0.5em;
+}

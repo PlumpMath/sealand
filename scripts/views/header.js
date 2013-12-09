@@ -1,32 +1,39 @@
 define(
-['jquery', 'underscore', 'backbone', 'text!scripts/templates/header.html'],
-function($, _, Backbone, headerTemplate) {
+[
+  'jquery',
+  'underscore',
+  'backbone',
+  'text!scripts/templates/header.html',
+  'scripts/app'
+],
+function($, _, Backbone, headerTemplate, App) {
   var HeaderView = Backbone.View.extend({
     el: $('header'),
     template: headerTemplate,
 
-    initialize: function() {
-      _.extend(this, Backbone.Events);
-    },
-
     events: {
-      'click .about': 'naviateAbout',
-      'click .home': 'navigateHome'
+      'click .home': 'navigateHome',
+      'click .about': 'navigateAbout',
+      'click .lyrics': 'navigateLyrics'
     },
 
-    navigateAbout: function() {
-      console.log('about');
-      this.trigger('navigateAbout');
+    navigateHome: function(e) {
+      e.preventDefault();
+      this.trigger('navigate:home');
     },
 
-    navigateHome: function() {
-      console.log('home');
-      this.trigger('navigateHome');
+    navigateAbout: function(e) {
+      e.preventDefault();
+      this.trigger('navigate:about');
+    },
+
+    navigateLyrics: function(e) {
+      e.preventDefault();
+      this.trigger('navigate:lyrics');
     },
 
     render: function() {
       this.$el.html(this.template);
-      this.delegateEvents();
 
       return this;
     }

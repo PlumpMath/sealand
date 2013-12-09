@@ -5,9 +5,10 @@ define(
   'backbone',
   'scripts/views/index',
   'scripts/views/about',
+  'scripts/views/lyrics',
   'scripts/views/header'
 ],
-function($, _, Backbone, IndexView, AboutView, HeaderView) {
+function($, _, Backbone, IndexView, AboutView, LyricsView, HeaderView) {
   var App = {};
   _.extend(App, Backbone.Events);
 
@@ -26,6 +27,11 @@ function($, _, Backbone, IndexView, AboutView, HeaderView) {
     showAbout: function() {
       var aboutView = new AboutView();
       aboutView.render();
+    },
+
+    showLyrics: function() {
+      var lyricsView = new LyricsView();
+      lyricsView.render();
     }
   });
 
@@ -35,13 +41,14 @@ function($, _, Backbone, IndexView, AboutView, HeaderView) {
 
     var headerView = new HeaderView();
     headerView.render();
-
-    App.on('navigateHome', function() {
-      router.navigate('home');
+    headerView.on('navigate:home', function() {
+      router.navigate('/', { trigger: true });
     });
-
-    App.on('navigateAbout', function() {
-      router.navigate('about');
+    headerView.on('navigate:about', function() {
+      router.navigate('/about', { trigger: true });
+    });
+    headerView.on('navigate:lyrics', function() {
+      router.navigate('/lyrics', { trigger: true });
     });
   };
 

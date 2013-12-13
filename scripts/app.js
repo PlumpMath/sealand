@@ -10,7 +10,6 @@ define(
 ],
 function($, _, Backbone, IndexView, AboutView, LyricsView, HeaderView) {
   var App = {};
-  _.extend(App, Backbone.Events);
 
   var Router = Backbone.Router.extend({
     routes: {

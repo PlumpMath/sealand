@@ -3,12 +3,14 @@ define(
   'jquery',
   'underscore',
   'backbone',
+  'fixtures',
   'scripts/views/index',
   'scripts/views/about',
   'scripts/views/lyrics',
+  'scripts/models/lyrics',
   'scripts/views/header'
 ],
-function($, _, Backbone, IndexView, AboutView, LyricsView, HeaderView) {
+function($, _, Backbone, Fixtures, IndexView, AboutView, LyricsView, LyricsModel, HeaderView) {
   var App = {};
 
   var Router = Backbone.Router.extend({
@@ -29,8 +31,8 @@ function($, _, Backbone, IndexView, AboutView, LyricsView, HeaderView) {
     },
 
     showLyrics: function() {
-      var lyricsView = new LyricsView();
-      lyricsView.render();
+      var lyricsModel = new LyricsModel();
+      var lyricsView = new LyricsView({ model: lyricsModel });
     }
   });
 

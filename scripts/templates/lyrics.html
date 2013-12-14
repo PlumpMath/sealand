@@ -1,3 +1,16 @@
 <div class="lyrics-container">
   <h2>the lyrics page!</h2>
+
+  <ul class="song-list">
+    <% _.each(songs, function(song) { %>
+      <li class="song">
+        <p class="title"><%- song.title %></p>
+        <p class="lyrics">
+          <% _.each(song.lyrics, function(line) { %>
+            <%- line %> <br />
+          <% }) %>
+        </p>
+      </li>
+    <% }) %>
+  </ul>
 </div>

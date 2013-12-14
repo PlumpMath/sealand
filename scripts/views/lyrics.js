@@ -3,10 +3,18 @@ define(
 function($, _, Backbone, lyricsTemplate) {
   var LyricsView = Backbone.View.extend({
     el: $('.content'),
-    template: lyricsTemplate,
+    template: _.template(lyricsTemplate),
+
+    initialize: function() {
+      this.model.deferred.done(function() {
+        this.render();
+      }.bind(this));
+    },
 
     render: function() {
-      this.$el.html(this.template);
+      var songs = this.model.get('songs');
+
+      this.$el.html(this.template({ songs: songs }));
 
       return this;
     }
